@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.hellohappy.exception.ResourceNotFoundException;
 import com.hellohappy.model.Brinquedo;
 import com.hellohappy.repository.BrinquedoRepository;
 
@@ -46,7 +47,7 @@ public class BrinquedoService {
             brinquedo.setValor(brinquedoAtualizado.getValor());
             brinquedo.setCategoria(brinquedoAtualizado.getCategoria());
             return brinquedoRepository.save(brinquedo);
-        }).orElseThrow(() -> new RuntimeException("Brinquedo não encontrado com id: " + id));
+        }).orElseThrow(() -> new ResourceNotFoundException("Brinquedo não encontrado com id: " + id));
     }
 
     public void excluir(Long id) {

@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hellohappy.model.Brinquedo;
 import com.hellohappy.service.BrinquedoService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/brinquedos")
 public class BrinquedoController {
@@ -49,13 +51,13 @@ public class BrinquedoController {
     }
 
     @PostMapping
-    public ResponseEntity<Brinquedo> criar(@RequestBody Brinquedo brinquedo) {
+    public ResponseEntity<Brinquedo> criar(@Valid @RequestBody Brinquedo brinquedo) {
         Brinquedo salvo = brinquedoService.salvar(brinquedo);
         return ResponseEntity.status(HttpStatus.CREATED).body(salvo);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Brinquedo> atualizar(@PathVariable Long id, @RequestBody Brinquedo brinquedo) {
+    public ResponseEntity<Brinquedo> atualizar(@PathVariable Long id, @Valid @RequestBody Brinquedo brinquedo) {
         Brinquedo atualizado = brinquedoService.atualizar(id, brinquedo);
         return ResponseEntity.ok(atualizado);
     }
