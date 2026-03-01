@@ -24,4 +24,8 @@ public class CategoriaService {
     public Optional<Categoria> buscarPorId(Long id) {
         return categoriaRepository.findById(id);
     }
+
+    public Categoria salvar(Categoria categoria) {
+        return categoriaRepository.save(categoria);
+    }
 }
