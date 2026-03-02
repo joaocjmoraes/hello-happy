@@ -12,4 +12,6 @@ public interface BrinquedoRepository extends JpaRepository<Brinquedo, Long> {
 
     List<Brinquedo> findTop6ByOrderByIdDesc();
 
+    List<Brinquedo> findByDescricaoContainingIgnoreCaseOrMarcaContainingIgnoreCase(String descricao, String marca);
+
 }

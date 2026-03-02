@@ -34,6 +34,10 @@ public class BrinquedoService {
         return brinquedoRepository.findByCategoriaId(categoriaId);
     }
 
+    public List<Brinquedo> buscar(String termo) {
+        return brinquedoRepository.findByDescricaoContainingIgnoreCaseOrMarcaContainingIgnoreCase(termo, termo);
+    }
+
     public Brinquedo salvar(Brinquedo brinquedo) {
         return brinquedoRepository.save(brinquedo);
     }
