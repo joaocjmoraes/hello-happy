@@ -51,6 +51,9 @@ public class BrinquedoService {
     }
 
     public void excluir(Long id) {
+        if (!brinquedoRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Brinquedo não encontrado com id: " + id);
+        }
         brinquedoRepository.deleteById(id);
     }
 }

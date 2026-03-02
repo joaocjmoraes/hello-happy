@@ -35,6 +35,9 @@ public class MembroEquipeService {
     }
 
     public void excluir(Long id) {
+        if (!membroEquipeRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Membro não encontrado com id: " + id);
+        }
         membroEquipeRepository.deleteById(id);
     }
 }
