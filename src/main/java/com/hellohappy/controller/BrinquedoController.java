@@ -40,9 +40,8 @@ public class BrinquedoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Brinquedo> buscarPorId(@PathVariable Long id) {
-        return brinquedoService.buscarPorId(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        Brinquedo brinquedo = brinquedoService.buscarPorId(id);
+        return ResponseEntity.ok(brinquedo);
     }
 
     @GetMapping("/categoria/{categoriaId}")

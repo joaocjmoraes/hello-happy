@@ -1,10 +1,10 @@
 package com.hellohappy.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.hellohappy.exception.ResourceNotFoundException;
 import com.hellohappy.model.Categoria;
 import com.hellohappy.repository.CategoriaRepository;
 
@@ -21,8 +21,9 @@ public class CategoriaService {
         return categoriaRepository.findAll();
     }
 
-    public Optional<Categoria> buscarPorId(Long id) {
-        return categoriaRepository.findById(id);
+    public Categoria buscarPorId(Long id) {
+        return categoriaRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Categoria não encontrada com id: " + id));
     }
 
     public Categoria salvar(Categoria categoria) {

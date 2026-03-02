@@ -1,7 +1,6 @@
 package com.hellohappy.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -22,8 +21,9 @@ public class BrinquedoService {
         return brinquedoRepository.findAll();
     }
 
-    public Optional<Brinquedo> buscarPorId(Long id) {
-        return brinquedoRepository.findById(id);
+    public Brinquedo buscarPorId(Long id) {
+        return brinquedoRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Brinquedo não encontrado com id: " + id));
     }
 
     public List<Brinquedo> listarDestaques() {

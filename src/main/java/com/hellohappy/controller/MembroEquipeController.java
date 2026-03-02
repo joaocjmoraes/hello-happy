@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.hellohappy.model.MembroEquipe;
 import com.hellohappy.service.MembroEquipeService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/equipe")
 public class MembroEquipeController {
@@ -32,13 +34,13 @@ public class MembroEquipeController {
     }
 
     @PostMapping
-    public ResponseEntity<MembroEquipe> criar(@RequestBody MembroEquipe membro) {
+    public ResponseEntity<MembroEquipe> criar(@Valid @RequestBody MembroEquipe membro) {
         MembroEquipe salvo = membroEquipeService.salvar(membro);
         return ResponseEntity.status(HttpStatus.CREATED).body(salvo);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MembroEquipe> atualizar(@PathVariable Long id, @RequestBody MembroEquipe membro) {
+    public ResponseEntity<MembroEquipe> atualizar(@PathVariable Long id, @Valid @RequestBody MembroEquipe membro) {
         MembroEquipe atualizado = membroEquipeService.atualizar(id, membro);
         return ResponseEntity.ok(atualizado);
     }
