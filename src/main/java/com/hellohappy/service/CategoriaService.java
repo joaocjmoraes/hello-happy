@@ -29,4 +29,19 @@ public class CategoriaService {
     public Categoria salvar(Categoria categoria) {
         return categoriaRepository.save(categoria);
     }
+
+    public Categoria atualizar(Long id, Categoria categoriaAtualizada) {
+        return categoriaRepository.findById(id).map(categoria -> {
+            categoria.setNome(categoriaAtualizada.getNome());
+            categoria.setImagemUrl(categoriaAtualizada.getImagemUrl());
+            return categoriaRepository.save(categoria);
+        }).orElseThrow(() -> new ResourceNotFoundException("Categoria não encontrada com id: " + id));
+    }
+
+    public void excluir(Long id) {
+        if (!categoriaRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Categoria não encontrada com id: " + id);
+        }
+        categoriaRepository.deleteById(id);
+    }
 }
