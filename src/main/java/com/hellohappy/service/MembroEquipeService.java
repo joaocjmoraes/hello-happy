@@ -19,4 +19,8 @@ public class MembroEquipeService {
     public List<MembroEquipe> listarTodos() {
         return membroEquipeRepository.findAll();
     }
+
+    public MembroEquipe salvar(MembroEquipe membro) {
+        return membroEquipeRepository.save(membro);
+    }
 }
