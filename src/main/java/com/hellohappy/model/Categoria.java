@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "categorias")
@@ -27,6 +28,7 @@ public class Categoria {
     @Column(name = "imagem_url")
     private String imagemUrl;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "categoria")
     private List<Brinquedo> brinquedos = new ArrayList<>();
 
