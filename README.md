@@ -4,7 +4,7 @@ E-commerce de brinquedos desenvolvido com Spring Boot.
 
 ## Tecnologias
 
-- Java 17
+- Java 21
 - Spring Boot 3.2.3
 - Spring Data JPA / Hibernate
 - PostgreSQL
