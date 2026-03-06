@@ -1,17 +1,2 @@
-# Build output
 target/
-
-# IDE
 .vscode/
-.idea/
-*.iml
-
-# Maven wrapper (optional, some teams commit this)
-!.mvn/wrapper/maven-wrapper.jar
-
-# OS
-.DS_Store
-Thumbs.db
-
-# Environment
-*.env

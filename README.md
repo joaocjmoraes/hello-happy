@@ -8,13 +8,13 @@ E-commerce de brinquedos desenvolvido com Spring Boot.
 - Spring Boot 3.2.3
 - Spring Data JPA / Hibernate
 - PostgreSQL
-- Thymeleaf
 - Maven
 
 ## Requisitos
 
 - JDK 17+
 - PostgreSQL com database `hello_happy` criado
+- Alterar dados de conexão do banco de dados em apllication.properties
 
 ## Como executar
 
