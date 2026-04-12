@@ -16,7 +16,10 @@ services:
       retries: 10
 
   backend:
-    image: registry.access.redhat.com/ubi9/openjdk-17:latest
+    build:
+      context: .
+      dockerfile: .devcontainer/backend/Containerfile
+    image: localhost/hello-happy-backend-dev:latest
     command: sleep infinity
     working_dir: /workspaces/hello-happy
     user: "0"

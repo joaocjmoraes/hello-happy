@@ -1,0 +1,12 @@
+FROM registry.access.redhat.com/ubi9/openjdk-17:latest
+
+USER 0
+
+RUN microdnf install -y \
+    findutils \
+    git \
+    gzip \
+    procps-ng \
+    unzip \
+    which \
+  && microdnf clean all
