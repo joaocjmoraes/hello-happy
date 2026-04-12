@@ -1,0 +1,18 @@
+{
+  "name": "Hello Happy Frontend",
+  "dockerComposeFile": "../../compose.dev.yml",
+  "service": "frontend",
+  "runServices": ["db", "backend", "frontend"],
+  "workspaceFolder": "/workspaces/hello-happy",
+  "remoteUser": "root",
+  "forwardPorts": [5173],
+  "shutdownAction": "none",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  }
+}
