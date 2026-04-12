@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import './App.css'
 import { AdminDashboard } from './components/admin/AdminDashboard'
 import { DetailModal } from './components/catalog/DetailModal'
@@ -94,10 +94,7 @@ function App() {
     return () => clearTimeout(timeoutId)
   }, [carregarBrinquedos])
 
-  const totalCatalogo = useMemo(
-    () => new Set([...brinquedos, ...destaques].map((item) => item.id)).size,
-    [brinquedos, destaques],
-  )
+ 
 
   async function atualizarTudo() {
     await carregarBase()
