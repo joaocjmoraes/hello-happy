@@ -16,6 +16,8 @@ E-commerce de brinquedos desenvolvido com Spring Boot, PostgreSQL e React.
 
 Esse caminho sobe o banco, o ambiente do backend e o ambiente do frontend em containers. Assim, nao e necessario instalar Java, PostgreSQL ou Node diretamente no Windows para desenvolver.
 
+No primeiro uso, o Compose tambem cria a imagem local de desenvolvimento do backend a partir de `.devcontainer/backend/Containerfile`.
+
 ### Requisitos
 
 - Docker Desktop instalado e aberto
@@ -74,6 +76,34 @@ docker compose -f compose.dev.yml down -v
 ```
 
 Use `down -v` somente quando quiser recriar o banco do zero.
+
+## Dev Containers no VS Code
+
+O projeto tem configuracoes em `.devcontainer/` para abrir backend e frontend pela extensao Dev Containers.
+
+No Windows com Docker Desktop, abra a pasta raiz `hello-happy` no VS Code e use:
+
+```text
+Dev Containers: Reopen in Container
+```
+
+Depois escolha:
+
+- `Hello Happy Backend`
+- `Hello Happy Frontend`
+
+Dentro do container backend, inicie a API:
+
+```bash
+./mvnw spring-boot:run
+```
+
+Dentro do container frontend, inicie o Vite:
+
+```bash
+npm --prefix frontend install
+npm --prefix frontend run dev
+```
 
 ## Rodando sem containers no Windows
 
