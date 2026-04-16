@@ -12,6 +12,10 @@ E-commerce de brinquedos desenvolvido com Spring Boot, PostgreSQL e React.
 - React
 - Vite
 
+## Link do Site hospedado na Web
+
+hello-happy.onrender.com
+
 ## Rodando no Windows com Docker Desktop
 
 Esse caminho sobe o banco, o ambiente do backend e o ambiente do frontend em containers. Assim, nao e necessario instalar Java, PostgreSQL ou Node diretamente no Windows para desenvolver.
