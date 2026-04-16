@@ -1,4 +1,4 @@
-const sections = ['loja', 'admin']
+const sections = ['loja', 'admin', 'equipe']
 
 export function MainNav({ activeSection, onSectionChange }) {
   return (

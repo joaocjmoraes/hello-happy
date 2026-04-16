@@ -94,3 +94,27 @@ export function excluirCategoria(id) {
     method: 'DELETE',
   })
 }
+
+export function listarEquipe() {
+  return request('/equipe')
+}
+
+export function criarMembro(membro) {
+  return request('/equipe', {
+    method: 'POST',
+    body: jsonBody(membro),
+  })
+}
+
+export function atualizarMembro(id, membro) {
+  return request(`/equipe/${id}`, {
+    method: 'PUT',
+    body: jsonBody(membro),
+  })
+}
+
+export function excluirMembro(id) {
+  return request(`/equipe/${id}`, {
+    method: 'DELETE',
+  })
+}

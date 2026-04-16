@@ -49,3 +49,27 @@ export function categoryToForm(categoria) {
     imagemUrl: categoria.imagemUrl ?? '',
   }
 }
+
+export const emptyMemberForm = {
+  id: '',
+  nome: '',
+  ra: '',
+  fotoUrl: '',
+}
+
+export function memberPayload(form) {
+  return {
+    nome: form.nome.trim(),
+    ra: form.ra.trim(),
+    fotoUrl: form.fotoUrl.trim(),
+  }
+}
+
+export function memberToForm(membro) {
+  return {
+    id: membro.id,
+    nome: membro.nome ?? '',
+    ra: membro.ra ?? '',
+    fotoUrl: membro.fotoUrl ?? '',
+  }
+}

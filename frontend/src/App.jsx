@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import './App.css'
 import { AdminDashboard } from './components/admin/AdminDashboard'
+import { TeamSection } from './components/admin/TeamSection'
 import { DetailModal } from './components/catalog/DetailModal'
 import { Storefront } from './components/catalog/Storefront'
 import { Hero } from './components/layout/Hero'
@@ -9,21 +10,28 @@ import { Notice } from './components/shared/Notice'
 import {
   atualizarBrinquedo,
   atualizarCategoria,
+  atualizarMembro,
   buscarBrinquedo,
   buscarBrinquedos,
   criarBrinquedo,
   criarCategoria,
+  criarMembro,
   excluirBrinquedo,
   excluirCategoria,
+  excluirMembro,
   listarBrinquedos,
   listarBrinquedosPorCategoria,
   listarCategorias,
   listarDestaques,
+  listarEquipe,
 } from './services/api'
 import {
   categoryToForm,
   emptyCategoryForm,
+  emptyMemberForm,
   emptyToyForm,
+  memberPayload,
+  memberToForm,
   toyPayload,
   toyToForm,
 } from './utils/forms'
@@ -41,16 +49,20 @@ function App() {
   const [mensagem, setMensagem] = useState('')
   const [toyForm, setToyForm] = useState(emptyToyForm)
   const [categoryForm, setCategoryForm] = useState(emptyCategoryForm)
+  const [membros, setMembros] = useState([])
+  const [memberForm, setMemberForm] = useState(emptyMemberForm)
 
   const carregarBase = useCallback(async () => {
     try {
-      const [categoriasData, destaquesData] = await Promise.all([
+      const [categoriasData, destaquesData, membrosData] = await Promise.all([
         listarCategorias(),
         listarDestaques(),
+        listarEquipe(),
       ])
 
       setCategorias(categoriasData)
       setDestaques(destaquesData)
+      setMembros(membrosData)
       setStatus('pronto')
     } catch (error) {
       setMensagem(error.message)
@@ -194,6 +206,35 @@ function App() {
     }
   }
 
+  async function salvarMembro(event) {
+    event.preventDefault()
+
+    try {
+      if (memberForm.id) {
+        await atualizarMembro(memberForm.id, memberPayload(memberForm))
+        setMensagem('Membro atualizado.')
+      } else {
+        await criarMembro(memberPayload(memberForm))
+        setMensagem('Membro cadastrado.')
+      }
+
+      setMemberForm(emptyMemberForm)
+      await atualizarTudo()
+    } catch (error) {
+      setMensagem(error.message)
+    }
+  }
+
+  async function removerMembro(id) {
+    try {
+      await excluirMembro(id)
+      setMensagem('Membro removido.')
+      await atualizarTudo()
+    } catch (error) {
+      setMensagem(error.message)
+    }
+  }
+
   return (
     <main className="app-shell">
       <MainNav activeSection={secao} onSectionChange={setSecao} />
@@ -237,6 +278,18 @@ function App() {
           onSaveToy={salvarBrinquedo}
           onToyFormChange={setToyForm}
           toyForm={toyForm}
+        />
+      )}
+
+      {secao === 'equipe' && (
+        <TeamSection
+          membros={membros}
+          memberForm={memberForm}
+          onCancelMember={() => setMemberForm(emptyMemberForm)}
+          onEditMember={(membro) => setMemberForm(memberToForm(membro))}
+          onMemberFormChange={setMemberForm}
+          onRemoveMember={removerMembro}
+          onSaveMember={salvarMembro}
         />
       )}
 
