@@ -2,11 +2,8 @@
 FROM maven:3.9-eclipse-temurin-17 AS builder
 WORKDIR /app
 COPY pom.xml .
-COPY .mvn .mvn
-COPY mvnw .
-RUN chmod +x mvnw
 COPY src src
-RUN ./mvnw clean install -DskipTests
+RUN mvn clean install -DskipTests
 
 # Stage 2: Run with Java
 FROM eclipse-temurin:17-jre-alpine
