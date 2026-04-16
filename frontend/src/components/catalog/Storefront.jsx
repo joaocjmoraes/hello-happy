@@ -78,7 +78,7 @@ function SectionHeading({ eyebrow, title }) {
 function HighlightsSection({ destaques, onOpenDetail }) {
   return (
     <section className="section-block">
-      <SectionHeading eyebrow="Destaques" title="Novidades no catalogo" />
+      <SectionHeading eyebrow="Destaques" title="Novidades no catálogo" />
       <div className="highlight-strip">
         {destaques.map((brinquedo, index) => (
           <button
