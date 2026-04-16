@@ -6,13 +6,13 @@ export function ToyForm({ categorias, form, onCancel, onChange, onSubmit }) {
     <form className="admin-form" onSubmit={onSubmit}>
       <Field
         disabled={Boolean(form.id)}
-        label="Codigo"
+        label="Código"
         required
         value={form.codigo}
         onChange={(event) => onChange({ ...form, codigo: event.target.value })}
       />
       <Field
-        label="Descricao"
+        label="Descrição"
         required
         value={form.descricao}
         onChange={(event) =>
